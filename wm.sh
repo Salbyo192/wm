@@ -3,6 +3,9 @@
 
 TMPFILE=$(mktemp /tmp/twm.XXXXXX.swift)
 
+# Ensure the temp file is removed on exit or interrupt
+trap 'rm -f "$TMPFILE"' EXIT INT TERM
+
 cat > "$TMPFILE" << 'EOF'
 import Cocoa
 import Quartz
@@ -68,5 +71,4 @@ RunLoop.main.run()
 EOF
 
 # Run the Swift script
-swift "$TMPFILE" && rm "$TMPFILE"
-
+swift "$TMPFILE"
