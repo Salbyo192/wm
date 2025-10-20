@@ -68,8 +68,5 @@ RunLoop.main.run()
 EOF
 
 # Run the Swift script
-swift "$TMPFILE"
-
-# Cleanup
-rm "$TMPFILE"
+swift "$TMPFILE" && rm "$TMPFILE"
 
